@@ -1,5 +1,5 @@
 const Stats = ({todos}) => {
-  const finishedTodos = 0
+  const finishedTodos = todos.filter((todo) => todo.status).length
   const activeTodos = todos.length - finishedTodos 
   return (
     <div className="stats">
