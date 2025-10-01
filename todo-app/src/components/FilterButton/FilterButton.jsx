@@ -1,6 +1,7 @@
-const FilterButton = ({type, children}) => {
+const FilterButton = ({type, children, active, onClick}) => {
+    
     return (
-        <button className={`filter-btn`} data-filter={type}>
+        <button onClick={onClick} className={`filter-btn${active ? " active " : ""}`} data-filter={type}>
             {children}
         </button>
     )

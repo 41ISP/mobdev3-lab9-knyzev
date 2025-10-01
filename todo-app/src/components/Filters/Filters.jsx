@@ -1,6 +1,6 @@
 import FilterButton from "../FilterButton/FilterButton"
 
-const Filters = (filter, setFilter) => {
+const Filters = ({filter, setFilter}) => {
     const filterButtons = [
         {
             type: "all",
@@ -14,12 +14,13 @@ const Filters = (filter, setFilter) => {
         {
             type: "completed",
             name: "Завершенные"
-        }
+        } 
     ]
+    
     return (
         <div className="filters">
             {filterButtons.map((button) =>(
-                <FilterButton type={button.type}>
+                <FilterButton onClick={() => setFilter(button.type)} active={filter == button.type} type={button.type}>
                     {button.name}
                 </FilterButton>
             ) )}

@@ -15,12 +15,24 @@ function App() {
   const [filter, setFilter] = useState("all")
 
   useEffect(() => {
-    setShowTodos(todos)
-  }, [todos])
+      const getFilteredTodos = (showTodos) => {
+  switch (filter) {
+    case 'active':
+      return todos.filter(todo => !todo.status);
+    case 'completed':
+      return todos.filter(todo => todo.status);
+    default:
+      return todos;
+  }
+};
+    setShowTodos(getFilteredTodos())
+  }, [todos, filter])
 
   useEffect(() => {
     localStorage.setItem("todos", JSON.stringify(todos))
   }, [todos])
+
+
 
   const handleAdd = () => {
     const newTodo = {
@@ -59,7 +71,7 @@ function App() {
         </div>
       </div>
 
-      <Filters filter={filter} setFilter={setFilter}  />
+      <Filters filter={filter} setFilter={setFilter} />
 
       <div className="todo-list">
         {showTodos.map((el) => (
